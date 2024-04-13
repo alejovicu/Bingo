@@ -45,6 +45,11 @@
       border-radius: 5px;
       box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     }
+
+    ul li.green {
+      background-color: #4CAF50; /* Verde */
+      color: white;
+    }
     
     button {
       background-color: #4CAF50;
@@ -125,12 +130,27 @@
       }
     }
 
+    // Resalta todos los números en amarillo
+    function highlightNumbersYellow() {
+      var columns = document.querySelectorAll(".column ul");
+      columns.forEach(function(column) {
+        var lis = column.getElementsByTagName("li");
+        for (var i = 0; i < lis.length; i++) {
+          lis[i].classList.remove("green");
+          lis[i].classList.remove("yellow");
+          lis[i].classList.add("yellow");
+        }
+      });
+    }
+
     // Generar un número aleatorio y mostrarlo en la pantalla
     function generateNumber() {
       if (numbers.length === 0) {
         alert("¡Ya se han generado todos los números!");
         return;
       }
+      
+      highlightNumbersYellow();
       
       var randomNumber = numbers.pop();
       var letter = getLetter(randomNumber);
@@ -141,9 +161,10 @@
       
       generatedNumbers[letter].sort((a, b) => a - b); // Ordenar números
       
-      var generatedNumberHTML = "<li>" + randomNumber + "</li>";
+      // Agregar el número recién generado y resaltarlo en verde
+      var generatedNumberHTML = "<li class='green'>" + randomNumber + "</li>";
+      generatedNumbersList.innerHTML += generatedNumberHTML;
       
-      generatedNumbersList.innerHTML = generatedNumbers[letter].map(num => "<li>" + num + "</li>").join("");
       remainingCount.innerHTML = "Cantidad de números pendientes: " + numbers.length;
     }
 
