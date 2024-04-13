@@ -19,9 +19,20 @@
       margin-top: 30px;
     }
     
+    .row {
+      display: flex;
+      justify-content: center;
+    }
+    
+    .column {
+      flex: 1;
+      margin: 0 10px;
+    }
+    
     ul {
       list-style-type: none;
       padding: 0;
+      text-align: left;
     }
     
     ul li {
@@ -30,7 +41,6 @@
       font-size: 24px;
       font-weight: bold;
       padding: 10px 20px;
-      display: inline-block;
       margin: 5px;
       border-radius: 5px;
       box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
@@ -52,21 +62,34 @@
       background-color: #45a049;
     }
     
-    #generated-numbers, #remaining-count {
-      margin: 0;
-      padding: 0;
-    }
-    
-    #remaining-count {
-      margin-top: 10px;
-    }
   </style>
 </head>
 <body>
   <h1>Juego de Bingo</h1>
   
   <h2>Números generados:</h2>
-  <ul id="generated-numbers"></ul>
+  <div class="row">
+    <div class="column">
+      <h3>B</h3>
+      <ul id="B-numbers"></ul>
+    </div>
+    <div class="column">
+      <h3>I</h3>
+      <ul id="I-numbers"></ul>
+    </div>
+    <div class="column">
+      <h3>N</h3>
+      <ul id="N-numbers"></ul>
+    </div>
+    <div class="column">
+      <h3>G</h3>
+      <ul id="G-numbers"></ul>
+    </div>
+    <div class="column">
+      <h3>O</h3>
+      <ul id="O-numbers"></ul>
+    </div>
+  </div>
   
   <h2>Cantidad de números pendientes:</h2>
   <p id="remaining-count"></p>
@@ -77,7 +100,7 @@
   
   <script>
     var numbers = [];
-    var generatedNumbers = [];
+    var generatedNumbers = { B: [], I: [], N: [], G: [], O: [] };
 
     // Generar números aleatorios para el juego de bingo
     function generateNumbers() {
@@ -110,28 +133,33 @@
       }
       
       var randomNumber = numbers.pop();
-      generatedNumbers.push(randomNumber);
+      var letter = getLetter(randomNumber);
+      generatedNumbers[letter].push(randomNumber);
       
-      var generatedNumbersList = document.getElementById("generated-numbers");
+      var generatedNumbersList = document.getElementById(letter + "-numbers");
       var remainingCount = document.getElementById("remaining-count");
       
-      var letter = "";
-      if (randomNumber >= 1 && randomNumber <= 15) {
-        letter = "B";
-      } else if (randomNumber >= 16 && randomNumber <= 30) {
-        letter = "I";
-      } else if (randomNumber >= 31 && randomNumber <= 45) {
-        letter = "N";
-      } else if (randomNumber >= 46 && randomNumber <= 60) {
-        letter = "G";
-      } else if (randomNumber >= 61 && randomNumber <= 75) {
-        letter = "O";
-      }
+      generatedNumbers[letter].sort((a, b) => a - b); // Ordenar números
       
-      var generatedNumberHTML = "<li>" + letter + randomNumber + "</li>";
+      var generatedNumberHTML = "<li>" + randomNumber + "</li>";
       
-      generatedNumbersList.innerHTML += generatedNumberHTML;
+      generatedNumbersList.innerHTML = generatedNumbers[letter].map(num => "<li>" + num + "</li>").join("");
       remainingCount.innerHTML = "Cantidad de números pendientes: " + numbers.length;
+    }
+
+    // Obtener la letra correspondiente a un número
+    function getLetter(number) {
+      if (number >= 1 && number <= 15) {
+        return "B";
+      } else if (number >= 16 && number <= 30) {
+        return "I";
+      } else if (number >= 31 && number <= 45) {
+        return "N";
+      } else if (number >= 46 && number <= 60) {
+        return "G";
+      } else if (number >= 61 && number <= 75) {
+        return "O";
+      }
     }
 
     // Generar los números al cargar la página
