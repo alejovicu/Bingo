@@ -1,0 +1,26 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+.container-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+h1 {
+    text-align: center;
+    font-size: 36px; /* Tamaño grande para el título */
+    margin-bottom: 20px; /* Espacio entre el título y la tabla */
+}
+th, td {
+    font-size: 50px; /* Tamaño grande para los números */
+    text-align: center;
+    vertical-align: middle;
+    padding: 20px;
+    border: 1px solid
+}
+th {
+    font-weight: bold;
+    font-size: 60px; /* Tamaño grande para las letras de las columnas */
+}
