@@ -61,3 +61,14 @@ button {
 button:hover {
   background-color: #45a049;
 }
+
+#remaining-count {
+  background-color: #c0e2f7;
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}

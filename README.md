@@ -2,7 +2,9 @@
 forked from https://github.com/luisafgm/Bingo
 Generated with ChatGPT
 
-## page to play:
+Just a Game to play with friends at home.
+
+## Page to play:
 
 Pick numbers:
 https://alejovicu.github.io/Bingo

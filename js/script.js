@@ -69,7 +69,7 @@ function generateNumber() {
   var generatedNumberHTML = "<li class='green'>" + randomNumber + "</li>";
   generatedNumbersList.innerHTML += generatedNumberHTML;
 
-  remainingCount.innerHTML = "Cantidad de números pendientes: " + numbers.length;
+  remainingCount.innerHTML = numbers.length;
 }
 
 // Obtener la letra correspondiente a un número
@@ -91,5 +91,5 @@ function getLetter(number) {
 window.onload = function() {
   generateNumbers();
   var remainingCount = document.getElementById("remaining-count");
-  remainingCount.innerHTML = "Cantidad de números pendientes: " + numbers.length;
+  remainingCount.innerHTML = numbers.length;
 };
